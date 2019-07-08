@@ -26,5 +26,15 @@ pipeline {
                 sh './jenkins/scripts/deliver.sh' 
             }
         }
+	stage('Test2') {
+	    steps {
+		sh 'mvn test'
+	    }
+	    post {
+		always {
+		    junite 'target/surefire-reports/*.xml'
+		}
+	    }
+	}
     }
 }
